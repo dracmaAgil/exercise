@@ -1,0 +1,23 @@
+.container
+  .row
+    .col-md-4
+      %h3
+        Perfil
+      %h4
+        =current_user.name
+      %h4
+        =current_user.user_name
+      %h4
+        =current_user.email
+      %br
+      =link_to 'Editar usuario', user_edit_path
+    .col-md-8
+      .row
+        %h4
+          Postea!
+      .row
+        =text_area_tag 'post', nil, {rows: 3, class: 'form-control'}
+      .row
+        %h4
+          Posts recientes
+      .row

@@ -1,0 +1,14 @@
+!!! XML
+!!! Strict
+%html{ :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %title= "Yummi exam login"
+    = stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = yield :head
+  %body.sessions
+    .container
+      .row
+        -flash.each do |message_type, message|
+          = content_tag(:div, message, class: "alert alert-info alert-#{message_type}")
+    = yield

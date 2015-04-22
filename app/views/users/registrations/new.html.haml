@@ -1,0 +1,44 @@
+.panel.panel-default.panel-primary.main
+  .panel-heading
+    %h3.panel-title Registrate
+  .panel-body
+
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = devise_error_messages!
+
+      .field
+        = f.label :name, 'Nombre' 
+        %br
+        = f.text_field :name, autofocus: true
+
+      .field
+        = f.label :user_name, 'Usuario' 
+        %br
+        = f.text_field :user_name
+
+      .field
+        = f.label :email, 'Correo' 
+        %br
+        = f.email_field :email
+
+      .field
+        = f.label :password, 'Contraseña' 
+        =if @validatable 
+          %em= "#{@minimum_password_length} caracteres mínimo"
+        %br
+        = f.password_field :password, autocomplete: "off" 
+
+      .field
+        = f.label :password_confirmation, 'Confirma tu contraseña' 
+        %br
+        = f.password_field :password_confirmation, autocomplete: "off" 
+
+      .field
+        = f.label :birthday, 'Fecha de nacimiento' 
+        %br
+        = f.text_field :birthday, {:class => 'date_picker'}
+      %br
+      .actions
+        = f.submit "Sign up" 
+
+    = render "devise/shared/links" 
