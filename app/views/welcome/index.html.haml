@@ -7,30 +7,20 @@
     .col-md-8
       %h3
         Post recientes
-      .row
-        %table.table.table-striped
-          %thead
-            %tr
-              %th
-                Usuario
-              %th
-                Contenido
-              %th
-                Fecha de publicación
-              %th
-          %tbody
-          - if @posts.count > 0
-            - @posts.to_a.each do |post|
-            
-              %tr
-                %td
-                  =post.user.user_name
-                %td
-                  =post.content
-                %td
-                  =post.created_at.to_s.to_date
-                %td
-                  =link_to 'show', post
-          - else
-            %h3
-              No hay post que revisar.
+      .form-group
+        - if @posts.count > 0
+          - @posts.to_a.each do |post|
+            .well
+              .row
+                %h4
+                  %strong="Usuario #{post.user.user_name}"
+              .row
+                %strong=post.content
+                %br
+                -if user_signed_in?
+                  =link_to 'Mostrar', post
+        - else
+          %h3
+            No hay post que revisar.
+
+        
