@@ -1,8 +1,10 @@
 %header.navbar.navbar-fixed-top.navbar-inverse
   %nav
     -if user_signed_in?
-      %span.label.label-default
-        = "Bienvenido #{current_user.name}"
+      %span.label
+        %strong= "Bienvenido #{current_user.name}"
+      %span
+        =link_to 'Perfil', profile_path
       %ul.nav.navbar-nav.navbar-right
         %li 
           =link_to 'Cerrar sesion', destroy_user_session_path, method: :delete
