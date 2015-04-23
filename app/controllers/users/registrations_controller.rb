@@ -30,6 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def show
+    @posts = current_user.posts
   end
 
   # GET /resource/cancel

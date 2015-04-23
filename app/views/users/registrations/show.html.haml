@@ -11,13 +11,42 @@
         =current_user.email
       %br
       =link_to 'Editar usuario', user_edit_path
+      %br
+      =link_to 'Home', root_path
     .col-md-8
       .row
         %h4
           Postea!
       .row
-        =text_area_tag 'post', nil, {rows: 3, class: 'form-control'}
+        =form_for current_user.posts.new do |f|
+          =f.text_area :content, {rows: 3, class: 'form-control'}
+          %br
+          = f.submit "Post"
       .row
         %h4
           Posts recientes
       .row
+        %table.table.table-striped
+          %thead
+            %tr
+              %th
+                Contenido
+              %th
+                Fecha de publicación
+              %th{:colspan=>"3"}
+          %tbody
+          - if @posts.count > 0
+            - @posts.to_a.each do |post|
+            
+              %tr
+                %td
+                  =post.content
+                %td
+                  =post.created_at.to_s.to_date
+                %td
+                  =link_to 'Editar', "posts/#{post.id}/edit"
+                %td
+                  = link_to 'Eliminar', post, method: :delete, data: { confirm: 'Estas seguro de eliminar este post?' }
+          - else
+            %h3
+              No hay post que revisar.

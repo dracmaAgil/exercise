@@ -1,1 +1,36 @@
-%h1=user_signed_in?
+.container
+  .row
+    .col-md-4
+      %h3
+        Bienvenido!
+      %br
+    .col-md-8
+      %h3
+        Post recientes
+      .row
+        %table.table.table-striped
+          %thead
+            %tr
+              %th
+                Usuario
+              %th
+                Contenido
+              %th
+                Fecha de publicación
+              %th
+          %tbody
+          - if @posts.count > 0
+            - @posts.to_a.each do |post|
+            
+              %tr
+                %td
+                  =post.user.user_name
+                %td
+                  =post.content
+                %td
+                  =post.created_at.to_s.to_date
+                %td
+                  =link_to 'show', post
+          - else
+            %h3
+              No hay post que revisar.
