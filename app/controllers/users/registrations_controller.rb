@@ -30,7 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def show
-    @posts = current_user.posts
+    @posts = Post.where("posts.user_id = #{current_user.id}")
   end
 
   # GET /resource/cancel

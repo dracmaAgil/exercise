@@ -44,7 +44,7 @@
                 %td
                   =post.created_at.to_s.to_date
                 %td
-                  =link_to 'Editar', "posts/#{post.id}/edit"
+                  =link_to 'Editar', edit_post_path(post)
                 %td
                   = link_to 'Eliminar', post, method: :delete, data: { confirm: 'Estas seguro de eliminar este post?' }
           - else

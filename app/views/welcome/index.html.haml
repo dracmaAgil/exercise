@@ -17,8 +17,7 @@
               .row
                 %strong=post.content
                 %br
-                -if user_signed_in?
-                  =link_to 'Mostrar', post
+                =link_to 'Mostrar', post
         - else
           %h3
             No hay post que revisar.

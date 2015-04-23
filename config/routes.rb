@@ -6,31 +6,16 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     registrations: "users/registrations"
   }
-  # devise_for :users, path: "", path_names: { 
-  #   sign_in: 'login', 
-  #   sign_out: 'logout',
-  #   sign_up: 'registration',
-  #   user_edit: 'edit_user'
-
-  # }
 
   devise_scope :user do
     get "login", to: 'users/sessions#new'
     get "logout", to: "users/sessions#destroy"
     get "sign_up", to: "users/registrations#new"
     get 'user_edit', to: 'users/registrations#edit'
-    # get 'profile', to: 'users/registrations#show'
-  end
-
-  authenticated :user do
-    devise_scope :user do
-      # root to: "users/registrations#show", :as => "profile"
-      get 'profile', to: "users/registrations#show"
-    end
+    get 'profile', to: 'users/registrations#show'
   end
 
   root 'welcome#index'
-  # get 'posts#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

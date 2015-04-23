@@ -1,5 +1,9 @@
 class PostsController < ApplicationController
+
+  before_action :authenticate_user!, except: [:show]
   before_action :find_post, only: [:show, :edit, :update, :destroy]
+  before_action :require_permission, only: :edit
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -48,6 +52,14 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:content)
+    end
+
+    def require_permission
+      if current_user != Post.find(params[:id]).user
+        redirect_to profile_path
+        
+        #Or do something else here
+      end
     end
 
 end
