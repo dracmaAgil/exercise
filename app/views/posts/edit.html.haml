@@ -1,0 +1,7 @@
+.container
+  .row
+    .panel
+      =form_for @post do |f|
+        =f.text_area :content, {rows: 3, class: 'form-control'}
+        %br
+        = f.submit "Edit"
